@@ -7,7 +7,7 @@ var app = angular.module('vidalegal', [
 
 
 // app.constant('API_URL', 'http://localhost/LeonAgencies/admin_zohar/api'); //dev
-app.constant('API_URL', 'http://10.105.168.88:8080/api/v1'); //prod
+app.constant('API_URL', 'http://159.203.88.185:5433/api/v1'); //prod
 
 app.config(function($stateProvider, $urlRouterProvider){
 

@@ -32,10 +32,10 @@
 <!-- HOME -->
 <div>
 	<div class="row contenido-general">	
-		<div class="aside-menu col-md-3">
+		<div class="aside-menu col-md-2">
 			<!-- <h2 class="admin-salas"></h2> -->
 			<ul>
-				<li style="border-top: 1px #fff solid;" class="seleccionado"><a class="seleccionado" href="#/home"><img src="images/homeiconover.png" alt="">Servicios</a></li>
+				<li style="border-top: 1px #fff solid;" class="seleccionado"><a class="seleccionado" href="#/home"><img src="images/homeicon.png" alt="">Servicios</a></li>
 			</ul>
 		</div>
 		<div class="panel-body">
@@ -45,7 +45,7 @@
           <p>Servicios Activos</p>
           <span>{{home.activos}}</span>
         </div>
-        <div class="col-md-3 ">
+        <div class="col-md-4 ">
           <p>Servicios Completados</p>
           <span>{{home.completed}}</span>
         </div>
@@ -56,9 +56,10 @@
 	    </div><br><br><hr>
 
       <div class="row historial">
-        <div class="col-md-9">
+        <div class="col-md-10">
         <h2>Servicios Activos</h2><br>
         <input class="form-control" type="search" placeholder="Search" ng-model="form.$"><br>
+        <span>Total servicios: {{home.services.length}}</span>
         <table class="table ">
           <thead>
             <th>#</th>
@@ -69,16 +70,16 @@
             <th>Acción</th>
           </thead>
           <tbody>
-            <tr ng-repeat="service in home.services | filter:form">
+            <tr ng-repeat="service in home.services | filter:form | orderBy:status">
               <td>{{$index+1}}</td>
               <td>{{service.type.name}}</td>
               <td>{{service.client}}</td>
               <td>{{service.price}}</td>
               <td>{{service.status}}</td>
               <td>
-                <button ng-if="service.status == 'Sin pagar' " class="btn btn-default">Iniciar Proceso</button>
-                <button ng-if="service.status == 'En proceso' " class="btn btn-default">Completar</button>
-                <button class="btn btn-default">Archivar</button>
+                <button ng-click="home.update('En proceso',service._id,service )" ng-if="service.status == 'Sin pagar' " class="btn btn-default">Iniciar Proceso</button>
+                <button ng-click="home.update('Completado',service._id,service )" ng-if="service.status == 'En proceso' " class="btn btn-default">Completar</button>
+                <button ng-if="service.status != 'Completado' && service.status != 'Cancelado' " ng-click="home.update('Cancelado',service._id,service )" class="btn btn-default">Cancelar</button>
               </td>
             </tr>
           </tbody>

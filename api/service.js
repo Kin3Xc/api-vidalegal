@@ -79,10 +79,16 @@ router
 
 // Update a service
 .put('/', function (req, res) {
+  console.log(req.body.service);
+  console.log(req.body.status);
+
   Service.findOneAndUpdate({_id: req.body.id},req.body, {}, function (err, service) {
     if (err)
       res.send(err);
     else
+      if (req.body.status == "En proceso"){email.sendMailStart(req.body.service)};
+      if (req.body.status == "Completado"){email.sendMailComplete(req.body.service)};
+      if (req.body.status == "Cancelado"){email.sendMailCancel(req.body.service)};
       res.send({err:false, data:service});
   });
 })

@@ -29,14 +29,14 @@ app.factory('Home', function($http, API_URL){
 			})
 		},
 
-		get_catalogos: function(){
-			return $http.get(API_URL+'/get_catalogos').success(function(data){
+		update: function(data){
+			return $http.put(API_URL+'/services', data).success(function(data){
 				return data;
 			})
 			.error(function(err){
 				console.log(err);
 			})
-		}
+		},
 
 	};
 

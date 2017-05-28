@@ -301,8 +301,8 @@ h2{
 	border-radius: 50%;
 }
 .seleccionado{
-	background-color: #e74c3c;
-	color: #fff !important;
+	/*background-color: #e74c3c;*/
+	/*color: #fff !important;*/
 }
 .panel-body{
 	padding: 0;margin: 0;

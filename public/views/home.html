@@ -8,7 +8,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#/home"><h1>Vida Legal</h1></a>
+      <a class="navbar-brand" href="#/home"><img src="images/logovidalegal.png" alt=""></a>
     </div>
   
     <!-- Collect the nav links, forms, and other content for toggling -->
@@ -57,9 +57,8 @@
 
       <div class="row historial">
         <div class="col-md-10">
-        <h2>Servicios Activos</h2><br>
-        <input class="form-control" type="search" placeholder="Search" ng-model="form.$"><br>
-        <span>Total servicios: {{home.services.length}}</span>
+        <h2>Servicios Activos <span class="total">Total servicios: {{home.services.length}}</span></h2><br>
+        <input class="form-control" type="search" placeholder="Search" ng-model="form.$">
         <table class="table ">
           <thead>
             <th>#</th>

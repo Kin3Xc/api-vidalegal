@@ -26,5 +26,5 @@ app.get('/', function (req, res) {
 });
 
 // start server
-var port = process.env.PORT || 8080;
+var port = process.env.PORT || 5433;
 app.listen(port);

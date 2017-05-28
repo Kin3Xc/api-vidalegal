@@ -454,3 +454,9 @@ tbody td{
 input{
 	margin-bottom: 10px;
 }
+.slogan{
+	position: absolute;
+	right: 20px;
+	font-size: 16px;
+	margin-top: 32px;
+}

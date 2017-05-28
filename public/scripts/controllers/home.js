@@ -13,7 +13,6 @@ app.controller('HomeController', function(localStorageService, Home, $location,$
 	vm.update = function(status,id,service){
 		console.log(status);
 		Home.update({status:status, id:id, service:service}).then(function(res){
-			console.log(res);
 			services();
 		});
 	}
@@ -23,15 +22,16 @@ app.controller('HomeController', function(localStorageService, Home, $location,$
 		Home.services().then(function(res){
 			vm.completed = 0;
 			vm.services = [];
-			console.log(res.data);
+			vm.activos = [];
+
 			vm.services = res.data;
 
 			for (var i = 0; i < res.data.length; i++) {
 				if (res.data[i].status == "Completado") {
 					vm.completed +=1;
 				}else{
-					// vm.services.push(res.data[i]);
-					vm.activos = vm.services.length;
+					vm.activos.push(res.data[i]);
+					// vm.activos = res.data[i].length;
 				}
 			}
 		});
@@ -40,7 +40,7 @@ app.controller('HomeController', function(localStorageService, Home, $location,$
 	// types
 	function types(){
 		Home.types().then(function(res){
-			console.log(res);
+
 			vm.types = res.data.length;
 		})
 	}

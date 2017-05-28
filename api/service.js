@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var Service = require('../schemas/service');
+var email = require ('./email');
 
 router
 // Get a service list
@@ -9,7 +10,12 @@ router
     if (err)
       res.send(err);
     else
-      res.send(services);
+      Service.populate(services, {path: 'type'}, function(err, data){
+        if (err)
+          res.send(err);
+        else
+          res.send(data);
+      });
   });
 })
 
@@ -19,19 +25,55 @@ router
     if (err)
       res.send(err);
     else
-      res.send(service);
+      Service.populate(service, {path: 'type'}, function(err, data){
+        if (err)
+          res.send(err);
+        else
+          res.send(data);
+      });
   });
 })
 
 
 // Add a new service
 .post('/', function (req, res) {
-  var service = new Service(req.body);
-  service.save(req.body, function (err, service) {
+  var objService = {};
+  objService = req.body;
+  objService.status = "Sin pagar";
+
+  // generate a code number for tracking
+  objService.code = Math.random().toString(36).substr(2, 5);
+
+  // evidence for service
+  if (req.files.evidence) {
+    objService.evidence = req.files.evidence.name;  
+  }
+  
+
+  var service = new Service(objService);
+
+  service.save(objService, function (err, service) {
     if (err)
       res.send({err: err});
     else
-      res.send({err: null, data: service});
+      email.sendMailCreateService(objService);
+      res.send({err: false});
+  });
+})
+
+
+// Get status for a service
+.get('/status/:code', function (req, res) {
+  Service.findOne({code: req.params.code}, function (err, service) {
+    if (err)
+      res.send(err);
+    else
+      Service.populate(service, {path: 'type'}, function(err, data){
+        if (err)
+          res.send(err);
+        else
+          res.send(data);
+      });
   });
 })
 

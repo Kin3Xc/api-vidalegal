@@ -28,7 +28,8 @@
     "mongoose": "^4.5.3",
     "multer": "^0.1.8",
     "nodemailer": "^0.7.1",
-    "promise": "^7.1.1"
+    "promise": "^7.1.1",
+    "jade": "^1.11.0"
   },
   "devDependencies": {
     "bower": "^1.7.9",

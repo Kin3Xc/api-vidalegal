@@ -1,0 +1,98 @@
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header logo">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#/home"><h1>Vida Legal</h1></a>
+    </div>
+  
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav navbar-right">
+
+
+        <li ng-if="home.auth" class="dropdown">
+          <a href="" class="dropdown-toggle nombre-user" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><img class="avatar" ng-src="{{home.user.usr_avatar}}" alt=""> Administrator <span class="caret"></span></a>
+          <ul class="dropdown-menu dm"  aria-labelledby="dropdownMenu3">
+            <li><a href="#/home">Servicios</a></li>
+            <li><a ng-click="home.logout()" href="#">Salir</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+
+<!-- HOME -->
+<div>
+	<div class="row contenido-general">	
+		<div class="aside-menu col-md-3">
+			<!-- <h2 class="admin-salas"></h2> -->
+			<ul>
+				<li style="border-top: 1px #fff solid;" class="seleccionado"><a class="seleccionado" href="#/home"><img src="images/homeiconover.png" alt="">Servicios</a></li>
+			</ul>
+		</div>
+		<div class="panel-body">
+
+	    <div class=" historial">
+	    	<div class="col-md-3 ">
+          <p>Servicios Activos</p>
+          <span>{{home.activos}}</span>
+        </div>
+        <div class="col-md-3 ">
+          <p>Servicios Completados</p>
+          <span>{{home.completed}}</span>
+        </div>
+        <div class="col-md-3 ">
+          <p>Tipos de Servicio</p>
+          <span>{{home.types}}</span>
+        </div>
+	    </div><br><br><hr>
+
+      <div class="row historial">
+        <div class="col-md-9">
+        <h2>Servicios Activos</h2><br>
+        <input class="form-control" type="search" placeholder="Search" ng-model="form.$"><br>
+        <table class="table ">
+          <thead>
+            <th>#</th>
+            <th>Type</th>
+            <th>Cliente</th>
+            <th>Valor</th>
+            <th>Status</th>
+            <th>Acción</th>
+          </thead>
+          <tbody>
+            <tr ng-repeat="service in home.services | filter:form">
+              <td>{{$index+1}}</td>
+              <td>{{service.type.name}}</td>
+              <td>{{service.client}}</td>
+              <td>{{service.price}}</td>
+              <td>{{service.status}}</td>
+              <td>
+                <button ng-if="service.status == 'Sin pagar' " class="btn btn-default">Iniciar Proceso</button>
+                <button ng-if="service.status == 'En proceso' " class="btn btn-default">Completar</button>
+                <button class="btn btn-default">Archivar</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        </div>
+      </div>
+
+      
+
+	  </div>
+</div>
+
+
+<div class="footer-panel">
+	<p>2017 - Bogotá, Colombia.</p>
+</div>
+

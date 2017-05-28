@@ -6,7 +6,8 @@ var TypeServiceSchema = new Schema({
     type: Date,
     default: Date.now
   },
-  name: String
+  name: String,
+  price: Number
 });
 
 module.exports = mongoose.model('TypeService', TypeServiceSchema);

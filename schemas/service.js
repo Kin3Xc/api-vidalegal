@@ -16,7 +16,11 @@ var ServiceSchema = new Schema({
   phone: String,
   price: Number,
   status: String,
-  ciudad: String
+  city: String,
+  country: String,
+  code: {type: String, unique:true},
+  description: String,
+  evidence: String
 });
 
 module.exports = mongoose.model('Service', ServiceSchema);

@@ -4,6 +4,6 @@ module.exports = {
   send:{
   	to: "kin3xc@hotmail.com, manu8083el@gamil.com, danielr50@hotmail.com, info@vidalegal.co",
   	from: "elkinjuc@gmail.com",
-  	pwd: "rootshell"
+  	pwd: ""
   }
 };
